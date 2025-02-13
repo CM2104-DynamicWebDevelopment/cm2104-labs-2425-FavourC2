@@ -8,7 +8,7 @@ app.get('/', function(req, res){
 });
 
 app.get("/test", function(req, res){
-    res.send("Hello world! by express");
+    res.send("Hello this is route 2");
     
 });
 
