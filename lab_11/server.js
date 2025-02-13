@@ -53,7 +53,7 @@ app.get('/calc', function(req,res){
         
 
         default:
-            res.send("Invalid operator. Use 'add' or 'sub'.");
+            res.send("Invalid operator. Use 'add', 'sub' or 'mul'.");
             return;
 
     }
