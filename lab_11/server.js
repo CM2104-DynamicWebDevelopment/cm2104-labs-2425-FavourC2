@@ -2,6 +2,9 @@ var express = require('express');
 var app = express();
 app.use(express.static('public'))
 
+//Because we are needing to parse the form data to be readable, we need to add one more line. Include this line after your earlier app.use (app.post)
+app.use(express.urlencoded({extended:true}))
+
 
 app.get('/', function(req, res){
     res.send("Hello world! by express");
@@ -66,12 +69,25 @@ app.get('/calc', function(req,res){
     
 });
 
+// static files for name and quest could be used as basic login page 
 app.get('/getform', function(req,res){
     var name = req.query.name;
     var quest = req.query.quest;
     res.send("Hi "+name+" I am sure you will "+quest) ;
 
 });
+
+//What happens when you need to send sensitive information such as passwords? You don’t want this to be visible in the url. This is when you use a Post request (App.post)
+app.post('/postform', function(req,res){
+    var name = req.body.name;
+    var quest = req.body.quest;
+    res.send("Hi  " +name+ " I am sure you will"+ quest);
+
+});
+
+
+
+
 
 
 app.listen(8080);
