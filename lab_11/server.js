@@ -14,7 +14,7 @@ app.get("/test", function(req, res){
 });
 
 app.get('/add' , function(req,res){
-    var x = parseInt(req.query.x, 10)
+    var x = parseInt(req.query.x, 10);
     var y = parseInt(req.query.y, 10);
 
     if(isNaN(x) ||isNaN(y)){
