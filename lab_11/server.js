@@ -16,7 +16,13 @@ app.get("/test", function(req, res){
 app.get('/add' , function(req,res){
     var x = parseInt(req.query.x, 10)
     var y = parseInt(req.query.y, 10);
-    res.send("X + Y =" + (x+y));
+
+    if(isNaN(x) ||isNaN(y)){
+    res.send("Invalid input. Please provide numbers for x and y.");
+    }else{
+       res.send("X + Y =" + (x+y));  
+    }
+   
 
 
 });
