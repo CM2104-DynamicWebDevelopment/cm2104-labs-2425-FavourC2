@@ -50,10 +50,15 @@ app.get('/calc', function(req,res){
         res.send(`Result: ${result}`);
         return;
 
+        case "div":
+            result = x/y;
+            res.send(`Result: ${result}`);
+            return;
+
         
 
         default:
-            res.send("Invalid operator. Use 'add', 'sub' or 'mul'.");
+            res.send("Invalid operator. Use 'add', 'sub', 'mul' or 'div'.");
             return;
 
     }
