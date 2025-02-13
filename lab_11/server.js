@@ -30,24 +30,27 @@ app.get('/add' , function(req,res){
 app.get('/calc', function(req,res){
     var x = parseInt(req.query.x);
     var y = parseInt(req.query.y);
-    var operator = (add,sub,mul,div);
-        if(isNaN(x) ||isNaN(y)){
-        res.send("Invalid input. Please provide numbers for x and y.");
-        }else{
-            operator = add
-             res.send("X +Y =" + (x+y));
-             
+    var operator = req.query.operator;
 
+    var result;
+    
+    switch(operator){
+        case "add":
+        result = x + y;
+        res.send(result);
+        return;
 
+        case "sub":
+        result = x - y;
+        res.send(result);
+        return;
 
+        default:
+            res.send("Invalid operator. Use 'add' or 'sub'.");
+            return;
 
-
-        }
-
-
-
-
-
+    }
+    
 });
 
 
