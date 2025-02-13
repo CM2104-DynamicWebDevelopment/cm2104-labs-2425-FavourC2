@@ -77,7 +77,7 @@ app.get('/getform', function(req,res){
 
 });
 
-//What happens when you need to send sensitive information such as passwords? You don’t want this to be visible in the url. This is when you use a Post request (App.post)
+// More advanced login message that hides data from url. What happens when you need to send sensitive information such as passwords? You don’t want this to be visible in the url. This is when you use a Post request (App.post)
 app.post('/postform', function(req,res){
     var name = req.body.name;
     var quest = req.body.quest;
