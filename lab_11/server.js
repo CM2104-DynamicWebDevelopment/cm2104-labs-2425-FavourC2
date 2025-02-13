@@ -37,12 +37,12 @@ app.get('/calc', function(req,res){
     switch(operator){
         case "add":
         result = x + y;
-        res.send(result);
+        res.send(`Result: ${result}`);
         return;
 
         case "sub":
         result = x - y;
-        res.send(result);
+        res.send(`Result: ${result}`);
         return;
 
         default:
