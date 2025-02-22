@@ -101,7 +101,7 @@ async function getTopTracks(artist, res) {
     var artistID= req.query.artistID;
     if(!artistID){
         res.send("No id given m8");
-        getTracks(artistID,res);
+        getTopTracks(artistID,res);
     }
    })
 
