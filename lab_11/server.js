@@ -2,6 +2,11 @@ var express = require('express');
 var app = express();
 app.use(express.static('public'))
 
+//When users are browsing your site they may accidentally try to go to apage that does not exist. ▸ This does not look very professional To combat this you can set up a sort of “catch-all” route
+app.use(function ( req, res, next) {
+        res.send('This page does not exist!')
+       })
+       
 //Because we are needing to parse the form data to be readable, we need to add one more line. Include this line after your earlier app.use (app.post)
 app.use(express.urlencoded({extended:true}))
 
@@ -83,6 +88,7 @@ app.post('/postform', function(req, res){
     var quest = req.body.quest;
      res.send("Hi "+name+" I am sure you will "+ quest);
     });
+    
     
 
 
