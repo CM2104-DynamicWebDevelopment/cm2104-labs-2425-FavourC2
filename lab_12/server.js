@@ -34,7 +34,37 @@ spotifyApi.clientCredentialsGrant().then(
     );
     }
    );
+ async function getTracksAPI(searchterm, res) {
+    spotifyApi.searchTracks(searchterm)
+    .then(function (data) {
+    //first lets get the tracks.
+    //these are stored in the
+    //JSON under an array called Items
+    var tracks = data.body.tracks.items
+    //lets set up a empty json array
+   //to act as the response
+    var JSONResponse = [];
+    //now lets run through all the items
+    //this is a for loop
 
+    for(var i=0; i<tracks.length;i++)
+    {
+    var track = tracks[i];
+   //here we push the details we need about this track to the array
+    JSONResponse.push(
+    {
+    trackname:track.name,
+    artist:track.artists[0].name,
+    image:track.album.images[0].url,
+    url:track.external_urls.spotify,
+    }
+    );
+    }
+    res.send(JSONResponse)
+    }, function (err) {
+    console.error(err);
+    });
+   }
 
    //ASYNC FUNCTION     
    async function getTracks(searchterm,res) {
@@ -75,6 +105,8 @@ async function getTopTracks(artist, res) {
     console.log('Something went wrong!', err);
     });
    }
+
+  
 
 
 
