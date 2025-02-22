@@ -5,7 +5,7 @@ var SpotifyWebApi = require('spotify-web-api-node');
 
 var spotifyApi = new SpotifyWebApi({
     clientId:'1bd3fed0a3df4d8085dfc9b694fbfce7',
-    ClientSecret:'1648e97abed442918092dcb80b2c9b4f'
+    clientSecret:'d42ef9be6b064be09078c7c93782c515'
 
 }); 
 
@@ -15,20 +15,25 @@ app.get('/', function(req, res){
 
 //SPOTIFY API SETUP
 
-// Authenticate with Spotify and retrieve access token
+// Retrieve an access token
 spotifyApi.clientCredentialsGrant().then(
     function (data) {
-        console.log('The access token expires in ' + data.body['expires_in']);
-        console.log('The access token is ' + data.body['access_token']);
+    console.log('The access token expires in ' + data.body['expires_in']);
+    console.log('The access token is ' + data.body['access_token']);
 
-        // Save the access token
-        spotifyApi.setAccessToken(data.body['access_token']);
+
+    // Save the access token so that it's used in future calls
+    spotifyApi.setAccessToken(data.body['access_token']);
     },
-    function (err) {
-        console.log('Something went wrong when retrieving an access token', err.message);
-    }
-);
 
+    //Abort if an error is detected
+    function (err) {
+    console.log(
+    'Something went wrong when retrieving an access token',
+    err.message
+    );
+    }
+   );
 
 
    //ASYNC FUNCTION     
