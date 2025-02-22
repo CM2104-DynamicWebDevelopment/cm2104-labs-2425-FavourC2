@@ -63,7 +63,24 @@ spotifyApi.clientCredentialsGrant().then(
     }, function (err) {
     console.error(err);
     });
+
 }
+
+// New async function to get toptracks
+async function getTopTracks(artist, res) {
+    spotifyApi.getArtistTopTracks(artist,'GB')
+    .then(function (data) {
+    console.log(data.body);
+    }, function (err) {
+    console.log('Something went wrong!', err);
+    });
+   }
+
+
+
+
+
+
 
    //SEARCHTEM LOVE
 
@@ -73,11 +90,20 @@ spotifyApi.clientCredentialsGrant().then(
     getTracks('love',res)
    });
 
+   //Route for serach html 
    app.get('/search', function(req,res){
     var searchterm= req.query.searchterm;
     getTracks(searchterm,res)
    });
 
+   //Route for top artists 
+   app.get('/top-tracks', function(req,res){
+    var artistID= req.query.artistID;
+    if(!artistID){
+        res.send("No id given m8");
+        getTracks(artistID,res);
+    }
+   })
 
 
 
@@ -86,3 +112,4 @@ spotifyApi.clientCredentialsGrant().then(
 
 
 app.listen(8080);
+
