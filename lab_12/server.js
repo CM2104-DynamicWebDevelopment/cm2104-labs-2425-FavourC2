@@ -73,6 +73,11 @@ spotifyApi.clientCredentialsGrant().then(
     getTracks('love',res)
    });
 
+   app.get('/search', function(req,res){
+    var searchterm= req.query.searchterm;
+    getTracks(searchterm,res)
+   });
+
 
 
 
