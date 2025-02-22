@@ -38,7 +38,7 @@ app.get('/calc', function(req,res){
 
     var result;
     
-    switch(operator){
+    switch(operatoaddr){
         case "add":
         result = x + y;
         res.send(`Result: ${result}`);
@@ -81,7 +81,7 @@ app.get('/getform', function(req,res){
 app.post('/postform', function(req, res){
     var name = req.body.name;
     var quest = req.body.quest;
-     res.send("Hi "+name+" I am sure you will "+quest);
+     res.send("Hi "+name+" I am sure you will "+ quest);
     });
     
 
