@@ -7,6 +7,9 @@ const express = require('express');
 const app = express();
 //code to define the public
 app.use(express.static('public'))
+
+app.use(express.urlencoded({extended:true}))
+
 var db;
 //run the connect method.
 connectDB();
@@ -29,6 +32,17 @@ async function connectDB() {
     }
     res.send(output);
     });
+   });
+
+    //Route for adding quotes 
+   app.post('/quotes', function(req,res){
+    db.collection('quotes').insertOne(req.body, function(err, results){
+      if (err) throw err;
+      console.log('Saved to database')
+      res.redirect('/')
+
+    })
+
    });
    
  //everything is good lets start
