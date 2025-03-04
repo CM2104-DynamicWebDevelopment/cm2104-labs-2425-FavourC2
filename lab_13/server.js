@@ -66,7 +66,7 @@ async function connectDB() {
    app.post('/delete', function(req,res){
     db.collection('quotes').deleteOne(req.body, function(err,res){
       if(err) throw err;
-      res.redirect('/')
+      res.redirect('/');
 
     });
     
