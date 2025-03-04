@@ -63,8 +63,8 @@ async function connectDB() {
    });
 
    //Route to delete quotes from Db 
-   app.post('/delete', function(req,res){
-    db.collection('quotes').deleteOne(req.body, function(err,res){
+   app.post('/delete', function(req, res){
+    db.collection('quotes').deleteOne(req.body, function(err, result){
       if(err) throw err;
       res.redirect('/');
 
