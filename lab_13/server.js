@@ -45,7 +45,7 @@ async function connectDB() {
 
    });
 
-   //Route for finsing quotes 
+   //Route for finding quotes 
    app.post('/search', function(req,res){
     db.collection('quotes').find(req.body).toArray(function(err,result){
       if(err) throw err;
@@ -70,6 +70,18 @@ async function connectDB() {
 
     });
     
+   });
+
+   //Route to update quotes form Db
+   app.post('/update', function(req,res){
+    var query= { quote: req.body.quote};
+    var newvalues={$set:{name: req.body.newname, quote: req.body.newquote}};
+
+    db.collection('quotes').updateOne(query,newvalues, function(err,result){
+    if(err) throw err;
+    res.redirect('/');
+    });
+
    });
    
  //everything is good lets start
