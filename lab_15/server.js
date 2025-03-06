@@ -141,12 +141,14 @@ app.post('/dologin', function(req, res) {
 
 
     if(result.login.password == pword){ req.session.loggedin = true; res.redirect('/') }
+    if (result && result.login.password == pword) { 
+      req.session.loggedin = true;  
+      req.session.username = result.login.username; // Store the username in session
+      res.redirect('/');  
+  } else { 
+      res.redirect('/login'); 
+  }
 
-
-
-
-
-    else{res.redirect('/login')}
   });
 });
 
