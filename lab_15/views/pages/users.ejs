@@ -12,8 +12,8 @@
     </header>
 
     <% if(loggedInUser) {%>
-    <div class="Succesfull login">
-      <h3>Welcom to the page most humble user</h3>
+    <div class="alert alert-success">
+      <h3>Welcome,<%=loggedInUser.name.first %> <%loggedInUser.name.last%>!</h3>
     div>
    <% }%>
 

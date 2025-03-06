@@ -56,15 +56,22 @@ async function connectDB() {
 app.get('/', function(req, res) {
   //if the user is not logged in redirect them to the login page
   if(!req.session.loggedin){res.redirect('/login');return;}
+  
+  // Retrieve the logged-in user details
+  db.collection('people').findOne({ "login.username": req.session.username }, function(err, loggedInUser) {
+    if (err) throw err;
 
-  //otherwise perfrom a search to return all the documents in the people collection
+  // Retrieve all users
   db.collection('people').find().toArray(function(err, result) {
     if (err) throw err;
+    
     //the result of the query is sent to the users page as the "users" array
     res.render('pages/users', {
-      users: result
+      users: result,
+      loggedinUser: loggedinUser //Pass the logged in user to ejs
     })
   });
+});
 
 });
 
